@@ -4,6 +4,7 @@ from .models import NewsStory
 
 class IndexView(generic.ListView):
     template_name = 'news/index.html'
+    context_object_name = "all_stories"
 
     def get_queryset(self):
         '''Return all news stories.'''
@@ -12,5 +13,4 @@ class IndexView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['latest_stories'] = NewsStory.objects.all()[:4]
-        context['all_stories'] = NewsStory.objects.all()
         return context
